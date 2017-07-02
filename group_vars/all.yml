@@ -1,0 +1,38 @@
+---
+main_user: vince
+
+global_repo_packages:
+  - vim-gnome
+  - vlc
+  - terminator
+  - zsh
+  - git
+  - curl
+  - fonts-powerline
+  - python-pip
+  - python-dev
+  - libssl-dev
+
+global_external_packages:
+  - https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  - https://atom.io/download/deb
+
+global_pip_packages:
+  - ansible
+
+# User which is allowed passwordless sudo
+user_passwordless_sudo: "{{ main_user }}"
+
+zsh_theme: powerlevel9k/powerlevel9k
+#zsh_theme: geoffgarside
+
+atom_packages:
+  - git-time-machine
+  - git-plus
+  - atom-jinja2
+  - autocomplete-python
+  - highlight-selected
+  - language-diff
+  - language-docker
+  - language-powershell
+  
