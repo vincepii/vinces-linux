@@ -61,3 +61,22 @@
         dest: "~/.zshrc"
         regexp: "^ZSH_THEME="
         line: "ZSH_THEME=\"{{ zsh_theme }}\""
+
+    - name: add zsh-completions
+      become_user: "{{ main_user }}"
+      become: True
+      git:
+        repo: https://github.com/zsh-users/zsh-completions
+        dest: ~/.oh-my-zsh/custom/plugins/zsh-completions
+
+    - name: enable plugins
+      lineinfile:
+        dest: "~/.zshrc"
+        regexp: "^plugins="
+        line: plugins=(git zsh-completions)
+
+    - name: enable autocompletion
+      lineinfile:
+        dest: "~/.zshrc"
+        regexp: "autoload -U compinit && compinit"
+        line: "autoload -U compinit && compinit"
