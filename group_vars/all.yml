@@ -34,5 +34,7 @@ atom_packages:
   - highlight-selected
   - language-diff
   - language-docker
-  - language-powershell
-  
+  - last-cursor-position
+  - atom-ide-ui
+  - go-plus
+  - ide-go
