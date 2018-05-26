@@ -38,3 +38,5 @@ atom_packages:
   - atom-ide-ui
   - go-plus
   - ide-go
+  - center-screen
+
