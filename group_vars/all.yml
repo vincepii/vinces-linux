@@ -2,14 +2,14 @@
 main_user: vince
 
 global_repo_packages:
-  - vim-gnome
+  - vim
   - vlc
   - terminator
   - zsh
   - git
   - curl
   - fonts-powerline
-  - python-pip
+  - python3-pip
   - python-dev
   - libssl-dev
 
@@ -23,7 +23,7 @@ global_pip_packages:
 # User which is allowed passwordless sudo
 user_passwordless_sudo: "{{ main_user }}"
 
-zsh_theme: powerlevel9k/powerlevel9k
+zsh_theme: clean
 #zsh_theme: geoffgarside
 
 atom_packages:
@@ -39,4 +39,3 @@ atom_packages:
   - go-plus
   - ide-go
   - center-screen
-
