@@ -39,3 +39,5 @@ atom_packages:
   - go-plus
   - ide-go
   - center-screen
+
+i3_user: "{{ main_user }}"

@@ -1,0 +1,6 @@
+---
+i3_user: "{{ ansible_user_id }}"
+# Main group of the user running i3
+i3_group: "{{ i3_user }}"
+
+ssh_agent_rc_file: /home/{{ ansible_user_id }}/.zshrc

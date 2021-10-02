@@ -1,0 +1,46 @@
+---
+
+# A systemd unit to lock the screen after resuming from suspend.
+
+- name: Install the i3lock systemd unit
+  become: yes
+  ansible.builtin.template:
+    src: systemd/i3lock.service.j2
+    dest: /etc/systemd/system/i3lock.service
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Enable the i3lock systemd unit
+  become: yes
+  ansible.builtin.systemd:
+    name: i3lock
+    enabled: yes
+
+# SSH Agent (https://eklitzke.org/using-ssh-agent-and-ed25519-keys-on-gnome)
+
+- name: Install the ssh-agent user systemd unit
+  ansible.builtin.template:
+    src: systemd/ssh_agent.service.j2
+    dest: "/home/{{ i3_user }}/.config/systemd/user/ssh-agent.service"
+    owner: "{{ i3_user }}"
+    group: "{{ i3_group }}"
+    mode: '0755'
+
+- name: Enable the ssh-agent systemd unit
+  ansible.builtin.systemd:
+    name: ssh-agent
+    enabled: yes
+    scope: user
+
+- name: Set SSH_AUTH_SOCK from the systemd process
+  ansible.builtin.lineinfile:
+    path: "{{ ssh_agent_rc_file }}"
+    regexp: ".*systemctl --user show-environment.*"
+    line: eval $(systemctl --user show-environment | grep SSH_AUTH_SOCK)
+
+- name: Export SSH_AUTH_SOCK
+  ansible.builtin.lineinfile:
+    path: "{{ ssh_agent_rc_file }}"
+    regexp: "^export SSH_AUTH_SOCK$"
+    line: export SSH_AUTH_SOCK
