@@ -1,0 +1,21 @@
+---
+- hosts: all
+  tasks:
+    - name: SSH agent systemd user unit
+      ansible.builtin.template:
+        src: templates/ssh-agent.service.j2
+        dest: "{{ ansible_env.HOME }}/.config/systemd/user/ssh-agent.service"
+
+    - name: systemd environment
+      ansible.builtin.lineinfile:
+        path: "{{ ansible_env.HOME }}/.config/environment.d/ssh_auth_socket.conf"
+        line: SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+        create: yes
+
+    - name: start systemd service
+      ansible.builtin.systemd:
+        name: ssh-agent
+        state: started
+        enabled: yes
+        scope: user
+        daemon_reload: yes
