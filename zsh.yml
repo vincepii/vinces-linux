@@ -5,7 +5,7 @@
       become_user: "{{ main_user }}"
       become: True
       git:
-        repo: git://github.com/robbyrussell/oh-my-zsh.git
+        repo: git://github.com/ohmyzsh/ohmyzsh.git
         dest: ~/.oh-my-zsh
 
     - name: initialize zsh configuration from omz template
