@@ -10,12 +10,10 @@ global_repo_packages:
   - curl
   - fonts-powerline
   - python3-pip
-  - python-dev
   - libssl-dev
 
 global_external_packages:
   - https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  - https://atom.io/download/deb
 
 global_pip_packages:
   - ansible
